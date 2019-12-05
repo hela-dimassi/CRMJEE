@@ -1,5 +1,8 @@
 package service;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.LocalBean;
@@ -9,6 +12,9 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import model.Agent;
+import model.NotifiableEntity;
+import model.Notification;
+import model.NotificationEntity_Notification;
 import model.PointOfProspection;
 import model.PointOfSale;
 import model.Tache;
@@ -76,6 +82,20 @@ public class AgentService implements AgentServiceRemote {
 			agent.setStatus(3);
 			agent.setPointOfSale((PointOfSale)object);
 		}
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		 Date date = new Date();
+		//HeadOfDepartement pr = em.find(HeadOfDepartement.class, idCHef);
+		//DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+		System.out.println("****** dtae :: "+ dateFormat.format(date));
+		Notification notification = new Notification(0, dateFormat.format(date), " Rapport deposé ",
+				"l'agent  " + agent.getNom() +
+						 "  a affacter une mission");
+		em.persist(notification);
+		NotifiableEntity notifiable_entity = new NotifiableEntity("Administateur ", agent);
+		em.persist(notifiable_entity);
+		NotificationEntity_Notification notifiable_entity_notification = new NotificationEntity_Notification(
+				notifiable_entity, notification);
+		em.persist(notifiable_entity_notification);
 		
 	}
 
@@ -86,5 +106,7 @@ public class AgentService implements AgentServiceRemote {
 		List<Agent> results = query.getResultList();
 		return results; 
 	}
+	
+	
 
 }

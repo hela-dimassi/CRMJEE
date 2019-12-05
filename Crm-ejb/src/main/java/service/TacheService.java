@@ -67,6 +67,7 @@ public class TacheService implements TacheServiceRemote {
 		Ressource r = em.find(Ressource.class, idRessource);
 		t.getRessources().add(r);
 		r.getTaches().add(t);
+		r.setEtat(1);
 		em.persist(t);
 		em.persist(r);
 		em.flush();

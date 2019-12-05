@@ -89,6 +89,12 @@ public class Ressource implements Serializable {
 		this.nom = nom;
 		this.type = type;
 	}
+	public Ressource(int id, String nom, String type) {
+		super();
+		this.id = id;
+		this.nom = nom;
+		this.type = type;
+	}
 	
 
 }
