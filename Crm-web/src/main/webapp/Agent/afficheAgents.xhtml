@@ -1,0 +1,67 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	<head>
+<title>Afficher Agents</title>
+	</head>
+	<h:form>
+		<h:panelGrid columns="2">
+			<h:outputText value="Nom" />
+			<h:inputText value="#{agentBean.nom}" />
+
+			<h:outputText value="Prenom" />
+			<h:inputText value="#{agentBean.prenom}" />
+
+			<h:outputText value="Email" />
+			<h:inputText value="#{agentBean.email}" />
+
+			<h:outputText value="Numero Téléphone" />
+			<h:inputText value="#{agentBean.numTel}" />
+
+			<h:commandButton action="#{agentBean.addAgent()}"
+				value="Ajouter Agent" />
+			<h:commandButton action="#{agentBean.updateAgent()}"
+				value="Ajouter Agent" />
+		</h:panelGrid>
+	</h:form>
+	<h:panelGroup columns="2">
+		<h:form>
+			<h:dataTable value="#{agentBean.agents}" var="agent" border="1">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Nom" />
+					</f:facet>
+					<h:outputText value="#{agent.nom}"></h:outputText>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Prenom" />
+					</f:facet>
+					<h:outputText value="#{agent.prenom}"></h:outputText>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Email" />
+					</f:facet>
+					<h:outputText value="#{agent.email}"></h:outputText>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="delete" />
+					</f:facet>
+					<h:commandButton action="#{agentBean.deleteAgent(agent.id)}"
+						value="Supprimer" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Update" />
+					</f:facet>
+					<h:commandButton action="#{agentBean.displayAgent()}"
+						value="Modifier" />
+				</h:column>
+
+			</h:dataTable>
+		</h:form>
+	</h:panelGroup>
+</ui:composition>

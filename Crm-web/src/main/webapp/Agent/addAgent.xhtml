@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+<title>Ajouter Agent</title>
+</head>
+<body>
+<h:form>
+<h:panelGrid columns="2">
+	<h:outputText value="Nom" />
+	<h:inputText value="#{agentBean.nom}" />
+
+	<h:outputText value="Prenom" />
+	<h:inputText value="#{agentBean.prenom}" />
+
+	<h:outputText value="Email" />
+	<h:inputText value="#{agentBean.email}" />
+
+	<h:outputText value="Numero Téléphone" />
+	<h:inputText value="#{agentBean.numTel}" />
+
+	<h:commandButton action="#{agentBean.addAgent()}" value="Ajouter Agent"/>
+	<h:commandButton action="#{agentBean.updateAgent()}" value="Ajouter Agent"/>
+</h:panelGrid>
+</h:form>
+</body>
+</html>
