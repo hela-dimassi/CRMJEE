@@ -8,6 +8,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import model.Agent;
+import model.Tache;
 import service.AgentService;
 
 @ManagedBean
@@ -22,6 +23,7 @@ public class agentBean implements Serializable {
 	private List<Agent> agents;
 	private List<Agent> agentStatus;
 	private int agentIdToBeUpdate;
+	private int idMission;
 	@EJB
 	AgentService agentService;
 	
@@ -42,20 +44,21 @@ public class agentBean implements Serializable {
 	{
 		agentService.removeAgent(idAgent);
 	}
-	public void displayAgent(Agent agent) {		
+	public void modifier(Agent agent) {		
 		this.setNom(agent.getNom());
 		this.setPrenom(agent.getPrenom());
 		this.setEmail(agent.getEmail());
 		this.setNumTel(agent.getNumTel());
 		this.setAgentIdToBeUpdate(agent.getId());
 	
-	}
-	
-	public void updateAgent() 
+	}	
+	public void mettreAjourAgent() 
 	{
 		agentService.updateAgent(new Agent(agentIdToBeUpdate,email, nom, numTel, prenom));
 	}
-	
+	public void AffecterTacheAAgent(Tache tache, int idAgent) {
+		agentService.AffecterTacheAAgent(tache, idAgent);
+	}
 	public String getNom() {
 		return nom;
 	}
@@ -102,8 +105,16 @@ public class agentBean implements Serializable {
 	
 
 	public List<Agent> getAgentsByStatus(){
-		agents = agentService.findAgentsByStatus();
-		return agents;
+		agentStatus = agentService.findAgentsByStatus();
+		return agentStatus;
 	}
+	public int getIdMission() {
+		return idMission;
+	}
+	public void setIdMission(int idMission) {
+		this.idMission = idMission;
+	}
+	
+
 
 }

@@ -5,26 +5,6 @@
 	<head>
 <title>Afficher Agents</title>
 	</head>
-	<h:form>
-		<h:panelGrid columns="2">
-			<h:outputText value="Nom" />
-			<h:inputText value="#{agentBean.nom}" />
-
-			<h:outputText value="Prenom" />
-			<h:inputText value="#{agentBean.prenom}" />
-
-			<h:outputText value="Email" />
-			<h:inputText value="#{agentBean.email}" />
-
-			<h:outputText value="Numero Téléphone" />
-			<h:inputText value="#{agentBean.numTel}" />
-
-			<h:commandButton action="#{agentBean.addAgent()}"
-				value="Ajouter Agent" />
-			<h:commandButton action="#{agentBean.updateAgent()}"
-				value="Ajouter Agent" />
-		</h:panelGrid>
-	</h:form>
 	<h:panelGroup columns="2">
 		<h:form>
 			<h:dataTable value="#{agentBean.agents}" var="agent" border="1">
@@ -48,6 +28,12 @@
 				</h:column>
 				<h:column>
 					<f:facet name="header">
+						<h:outputText value="Status" />
+					</f:facet>
+					<h:outputText value="#{agent.status}"></h:outputText>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
 						<h:outputText value="delete" />
 					</f:facet>
 					<h:commandButton action="#{agentBean.deleteAgent(agent.id)}"
@@ -57,11 +43,42 @@
 					<f:facet name="header">
 						<h:outputText value="Update" />
 					</f:facet>
-					<h:commandButton action="#{agentBean.displayAgent()}"
+					<h:commandButton action="#{agentBean.modifier(agent)}"
 						value="Modifier" />
 				</h:column>
 
 			</h:dataTable>
 		</h:form>
 	</h:panelGroup>
+	<h:form>
+		<h:panelGrid columns="2">
+			<h:outputText value="Nom" />
+			<h:inputText value="#{agentBean.nom}" />
+
+			<h:outputText value="Prenom" />
+			<h:inputText value="#{agentBean.prenom}" />
+
+			<h:outputText value="Email" />
+			<h:inputText value="#{agentBean.email}" />
+
+			<h:outputText value="Numero Téléphone" />
+			<h:inputText value="#{agentBean.numTel}" />
+			
+			<h:outputText value="Numero Téléphone" />
+			<h:inputText value="#{agentBean.idMission}" />
+
+			<td style="margin-right: 70px"><h:selectOneMenu>
+					<f:selectItem itemValue="#{null}" itemLabel="Select..." />
+					<f:selectItems value="#{tacheBean.taches}" var="tache"
+						itemValue="#{tache.id}" itemLabel="#{tache.nom}"/>
+				</h:selectOneMenu></td>
+
+			<h:commandButton action="#{agentBean.addAgent()}"
+				value="Ajouter Agent" />
+			<h:commandButton action="#{agentBean.mettreAjourAgent()}"
+				value="Mettre a jour agent" />
+			<h:commandButton action="#{agentBean.AffecterTacheAAgent()}"
+				value="fsdfsdf" />
+		</h:panelGrid>
+	</h:form>
 </ui:composition>

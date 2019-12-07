@@ -40,10 +40,11 @@ public class TacheService implements TacheServiceRemote {
 	@Override
 	public void updateTache(Tache tache) {
 		// TODO Auto-generated method stub
-		Tache t = em.find(Tache.class, tache.getId());
-		t.setNom(t.getNom());
-		t.setDateDebut(t.getDateDebut());
-		t.setDateFin(t.getDateFin());
+//		Tache t = em.find(Tache.class, tache.getId());
+//		t.setNom(t.getNom());
+//		t.setDateDebut(t.getDateDebut());
+//		t.setDateFin(t.getDateFin());
+		em.merge(tache);
 		
 	}
 

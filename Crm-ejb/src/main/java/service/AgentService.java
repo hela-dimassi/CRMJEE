@@ -41,12 +41,13 @@ public class AgentService implements AgentServiceRemote {
 	@Override
 	public void updateAgent(Agent agent) {
 		// TODO Auto-generated method stub
-		Agent agen = em.find(Agent.class, agent.getId());
-		agen.setNom(agent.getNom());
-		agen.setPrenom(agen.getPrenom());
-		agen.setEmail(agen.getEmail());
-		agen.setStatus(agen.getStatus());
-		agen.setNumTel(agen.getNumTel());
+//		Agent agen = em.find(Agent.class, agent.getId());
+//		agen.setNom(agent.getNom());
+//		agen.setPrenom(agen.getPrenom());
+//		agen.setEmail(agen.getEmail());
+//		agen.setStatus(agen.getStatus());
+//		agen.setNumTel(agen.getNumTel());
+		em.merge(agent);
 		
 	}
 
@@ -87,8 +88,8 @@ public class AgentService implements AgentServiceRemote {
 		//HeadOfDepartement pr = em.find(HeadOfDepartement.class, idCHef);
 		//DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
 		System.out.println("****** dtae :: "+ dateFormat.format(date));
-		Notification notification = new Notification(0, dateFormat.format(date), " Rapport deposé ",
-				"l'agent  " + agent.getNom() +
+		Notification notification = new Notification(0, dateFormat.format(date), " Affectation de mission ",
+				"Nom:" + agent.getNom() + "Prenom:" +agent.getPrenom()+
 						 "  a affacter une mission");
 		em.persist(notification);
 		NotifiableEntity notifiable_entity = new NotifiableEntity("Administateur ", agent);
