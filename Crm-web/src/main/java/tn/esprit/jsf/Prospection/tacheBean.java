@@ -1,4 +1,4 @@
-package tn.esprit.jsf.Agent;
+package tn.esprit.jsf.Prospection;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -11,6 +11,7 @@ import javax.faces.event.AjaxBehaviorEvent;
 
 import service.TacheService;
 import model.Agent;
+import model.Ressource;
 import model.Tache;;
 
 @ManagedBean
@@ -26,7 +27,23 @@ public class tacheBean implements Serializable {
 	private int tacheIdToBeUpdate;
 	private Tache tache;
 	private int idTache;
+	private List<Ressource> ressouces;
+	private Ressource ressource;
+	private int idressource;
 	
+	
+	public int getIdressource() {
+		return idressource;
+	}
+	public void setIdressource(int idressource) {
+		this.idressource = idressource;
+	}
+	public Ressource getRessource() {
+		return ressource;
+	}
+	public void setRessource(Ressource ressource) {
+		this.ressource = ressource;
+	}
 	public Tache getTache() {
 		return tache;
 	}
@@ -48,32 +65,32 @@ public class tacheBean implements Serializable {
 		taches = tacheService.findallTache();
 		return taches;
 	}
-	public void addTache() 
+	public String addTache() 
 	{
 		Tache tache = new Tache(dateDebut, dateFin, nom);
 		if(dateFin.after(dateDebut)) {
 		tacheService.AddTache(tache);
 		}
 		System.out.println("Tache Added");
-		if(tache!=null) {
-			String navigateTo= "/Tache/AfficheTaches?faces-redirect=true";
-			
-		}
+		return "/Tache/afficheTaches?faces-redirect=true";
+				
 	}
 	public void deleteTache(int idTache)
 	{
 		tacheService.removeTache(idTache);
 	}
-	public void modifier(Tache tache) {		
+	public String modifier(Tache tache) {		
 		this.setNom(tache.getNom());
 		this.setDateDebut(tache.getDateDebut());
 		this.setDateFin(tache.getDateFin());
 		this.setTacheIdToBeUpdate(tache.getId());
+		return "/Tache/EditTache?faces-redirect=true";
 	
 	}
-	public void mettreAjourTache() 
+	public String mettreAjourTache() 
 	{
 		tacheService.updateTache(new Tache(tacheIdToBeUpdate, dateDebut, dateFin, nom));
+		return "/Tache/afficheTaches?faces-redirect=true";
 	}
 	public void SelectA(AjaxBehaviorEvent event) {
 		System.out.println("---------"+ idTache);
@@ -84,7 +101,6 @@ public class tacheBean implements Serializable {
 			e.printStackTrace();
 		}
 	}
-	
 	
 	public String getNom() {
 		return nom;
@@ -113,12 +129,27 @@ public class tacheBean implements Serializable {
 	public int getTacheIdToBeUpdate() {
 		return tacheIdToBeUpdate;
 	}
-
+	
+	public List<Ressource> getRessouces() {
+		return ressouces;
+	}
+	public void setRessouces(List<Ressource> ressouces) {
+		this.ressouces = ressouces;
+	}
+	
 	public void setTacheIdToBeUpdate(int tacheIdToBeUpdate) {
 		this.tacheIdToBeUpdate = tacheIdToBeUpdate;
 	}
-
 	
-	
+	public String affecterTacheAressource(Tache tache) {
+		this.setTacheIdToBeUpdate(tache.getId());
+		this.setNom(tache.getNom());
+		return "/Tache/AffacterRessourceTache?faces-redirect=true";
+		//tacheService.AffecterRessourceATache(idTache, idRessource);
+	}
+	public String affectation() {
+		tacheService.AffecterRessourceATache(idressource, tacheIdToBeUpdate);	
+		return "/Tache/afficheTaches?faces-redirect=true";
+	}
 	
 }

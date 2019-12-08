@@ -20,9 +20,15 @@
 	<h:outputText value="Email" />
 	<h:inputText value="#{agentBean.email}" />
 
-	<h:outputText value="Numero Téléphone" />
-	<h:inputText value="#{agentBean.numTel}" />
-
+	<h:outputText  value="Numero Téléphone" />
+	<h:inputText   value="#{agentBean.numTel}" onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;"/>
+     <td style="margin-right: 70px"><h:selectOneMenu>
+					<f:selectItem itemValue="#{null}" itemLabel="Select..." />
+					<f:selectItems value="#{tacheBean.taches}" var="tache"
+						itemValue="#{tache.id}" itemLabel="#{tache.nom}"/>
+						<h:commandButton action="#{agentBean.AffecterTacheAAgent()}"></h:commandButton>
+				</h:selectOneMenu></td>
+     
 	<h:commandButton action="#{agentBean.addAgent()}" value="Ajouter Agent"/>
 </h:panelGrid>
 </h:form>

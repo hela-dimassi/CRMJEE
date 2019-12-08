@@ -1,15 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
-<head>
-<title>Ajouter Tache</title>
-</head>
-<body>
-<h:form>
+	<head>
+		<title>Afficher Tache</title>
+	</head>
+	<h:form>
 	<h:panelGrid columns="2">
 		<h:outputText value="Nom" />
 		<h:inputText value="#{tacheBean.nom}" />
@@ -30,9 +26,7 @@
 			<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
 		</h:inputText>
 
-		<h:commandButton action="#{tacheBean.addTache()}" value="Ajouter Tache" />
-		
+		<h:commandButton action="#{tacheBean.mettreAjourTache()}" value="Mettre a jour tache"/>
 	</h:panelGrid>
 </h:form>
-</body>
-</html>
+</ui:composition>

@@ -108,6 +108,4 @@ public class AgentService implements AgentServiceRemote {
 		return results; 
 	}
 	
-	
-
 }
