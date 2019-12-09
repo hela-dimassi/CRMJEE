@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	   xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      template="/WEB-INF/template/template.xhtml">
+      
+      <ui:define name="title">
+      		<title>helaaaaaaaaaaaaaaaaaaaaaaaa</title>
+      </ui:define>
+      
+      <ui:define name="content">
+      <header class="main-header">
+      <div class="container">
+      
+      <h:form enctype="multipart/form-data">
+<h1>Events</h1>
+<h:commandButton action="#{eventBean.doBackW()}" value="Back" />
+<h:dataTable value="#{eventBean.events}" var="event" border="1">
+	<h:column>
+		<f:facet name="header">
+			<h:outputText value="eventId"/>
+		</f:facet>
+		<h:outputText value="#{event.eventId}"/>
+	</h:column>
+	
+	<h:column>
+		<f:facet name="header">
+			<h:outputText value="name"/>
+		</f:facet>
+		<h:outputText value="#{event.name}"/>
+	</h:column>
+	
+	<h:column>
+		<f:facet name="header">
+			<h:outputText value="dateBegin"/>
+		</f:facet>
+		<h:outputText value="#{event.dateBegin}"/>
+	</h:column>
+	
+	<h:column>
+		<f:facet name="header">
+			<h:outputText value="Description"/>
+		</f:facet>
+		<h:outputText value="#{event.dateEnd}"/>
+	</h:column>
+	
+	<h:column>
+		<f:facet name="header">
+			<h:outputText value="nbrPlaces"/>
+		</f:facet>
+		<h:outputText value="#{event.nbrPlaces}"/>
+	</h:column>
+	
+	<h:column>
+		<f:facet name="header">
+			<h:outputText value="imageUrl"/>
+		</f:facet>
+			<h:graphicImage value="image/#{event.imageUrl}" alt="Image" height="50" width="50" />
+	</h:column>
+	
+	
+	
+	
+	
+	<h:column>
+		<f:facet name="header">
+			<h:outputText value="nbrPlaceVendu"/>
+		</f:facet>
+		<h:outputText value="#{event.nbrPlaceVendu}"/>
+	</h:column>
+	
+		<h:column>
+		<f:facet name="header">
+			<h:outputText value="Salles"/>
+		</f:facet>
+		<h:outputText value="#{event.salle.name}"/>
+	</h:column>
+	
+	
+	<h:column>
+		<f:facet name="header">
+			<h:outputText value="Action"/>
+		</f:facet>
+		<h:commandButton action="#{eventBean.supprimer(event.eventId)}" value="Supprimer"/>
+		<h:commandButton action="#{eventBean.gomodif(event)}" value="Modifier"/>
+		<h:commandButton action="#{eventBean.getUserss(event.eventId)}" value="lesUsers"/>
+		
+	</h:column>
+	
+	
+</h:dataTable>
+
+
+
+</h:form>
+      </div>
+      
+      
+      </header>
+      
+       
+   
+      </ui:define>
+      
+          </ui:composition>

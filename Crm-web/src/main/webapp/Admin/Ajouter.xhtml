@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	   xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      template="/WEB-INF/template/template.xhtml">
+      
+      <ui:define name="title">
+      		<title>helaaaaaaaaaaaaaaaaaaaaaaaa</title>
+      </ui:define>
+      
+      <ui:define name="content">
+      <header class="main-header">
+      <div class="container">
+      
+      <h:form enctype="multipart/form-data">   
+<h1>Ajouter</h1>
+<h:panelGrid columns="2">
+		<h:outputText value="name"/>
+	<h:inputText value="#{eventBean.name}" />
+	
+	<h:outputText value="dateBegin"/>
+	<h:inputText value="#{eventBean.dateBegin}" />
+	
+	
+	<h:outputText value="Description"/>
+	<h:inputText value="#{eventBean.dateEnd}" />
+	
+	<h:outputText value="imageUrl"/>
+	<h:inputFile type="file" value="#{eventBean.file}"/>
+	
+	<h:outputText value="nbrPlaces"/>
+	<h:inputText value="#{eventBean.nbrPlaces}" />
+	<h:outputText value="selecy salle"/>
+	<h:selectOneMenu value="#{eventBean.selectedSalleId}">
+			<f:selectItems value="#{eventBean.salles}"  var="salle" 
+			 itemValue="#{salle.salleId}"  itemLabel="#{salle.name}"/>
+	</h:selectOneMenu>
+	
+
+	
+	
+	
+<h:commandButton action="#{eventBean.addEvent(eventBean.admin.adminId)}" value="Ajouter Event" />
+<h:commandButton action="#{eventBean.doBack()}" value="Back" />
+</h:panelGrid>
+</h:form>
+      </div>
+      
+      
+      </header>
+      
+       
+   
+      </ui:define>
+      
+          </ui:composition>

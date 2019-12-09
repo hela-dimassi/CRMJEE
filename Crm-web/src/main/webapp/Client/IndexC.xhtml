@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	   xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      template="/WEB-INF/template/template.xhtml">
+      
+      <ui:define name="title"><title>Welcome</title></ui:define>
+      <ui:param name="page_name" value="Connexion"></ui:param>
+      <ui:define name="content">
+      <h:form enctype="multipart/form-data">
+      <div class="about-box-main">
+      <div class="container">
+       <div class="all-title-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Our Events</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#"><h:outputText value="Bonjour #{loginBean.user.firstName}" /> </a></li>
+                        <li class="breadcrumb-item active"><h:commandLink value="Déconnexion" action="#{loginBean.doLogout}" /></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+      
+		<h:outputText value="Bonjour #{loginBean.user.firstName}" /> 
+		<h:commandLink value="Déconnexion" action="#{loginBean.doLogout}" />
+	
+		
+        
+				
+        
+			<div class="row my-4">
+			
+                <div class="col-12">
+                    <h2 class="noo-sh-title">Our Events</h2>
+                </div>
+              <ui:repeat value="#{eventBean.events}" var="event">
+                <div class="col-sm-6 col-lg-3">
+                    <div class="hover-team">
+                        <div class="our-team"> 
+						<h:graphicImage value="image/#{event.imageUrl}" alt="Image" height="255" width="190" />
+                            <div class="team-content">
+                                <h3 class="title"><h:outputText value="#{event.name}"/></h3> <span class="post"> <h:outputText value="#{event.dateBegin}"/>
+                                </span> </div>
+                           
+                            <div class="icon"> <i class="fa fa-plus" aria-hidden="true"></i> </div>
+                        </div>
+                        <div class="team-description" >
+                            
+							<p><h:outputText value="#{event.dateEnd}"/> </p>
+                        <h:commandButton action="#{eventBean.detail(event)}" value="Details"/>
+                       
+ 		<h:commandButton action="#{eventBean.addP(event.eventId ,loginBean.user.userId)}" value="Reserver" disabled="#{(event.nbrPlaces == event.nbrPlaceVendu)}"/>
+						</div>
+                        <hr class="my-0"/> </div>
+                </div>
+                </ui:repeat>
+            </div>
+		
+		</div>
+		</div>
+		
+	</h:form>
+      </ui:define>
+      
+      </ui:composition>
